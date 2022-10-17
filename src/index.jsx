@@ -1,24 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./style.css";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faComment, faShare } from '@fortawesome/free-solid-svg-icons';
+
+import axios from "axios";
+
 const NewsPost = ({ title, description, newsurl, imageurl }) => (
      <div className="post">
+
           <h1 className="post-head">Title:</h1>
           <h3>{title}</h3>
           <h1 className="post-head">Description:</h1>
-          <p>{description}</p>
+          <p>{description}</p><hr />
           <img className="post-pic" src={imageurl} alt="news" />
           <a className="orig-link" href={newsurl} target="_blank" rel="noreferrer">View source for details...</a>
+
+          <div><hr /></div>
+          <div className="postFooter">
+               <div><FontAwesomeIcon icon={faThumbsUp} /> Like</div>
+               <div><FontAwesomeIcon icon={faComment} /> Comment</div>
+               <div><FontAwesomeIcon icon={faShare} /> Share</div>
+          </div>
+
+          <div>
+               <hr />
+          </div>
      </div>
+
 );
 
-const NewsPage = () => (
+const NewsPage = () => {
 
-     <div className="page">
+    const [posts, setPosts] = useState([]);
+
+     useEffect(() => {
+
+          axios.get("https://newsapi.org/v2/top-headlines?from=2022-10-18&country=us&apiKey=30cc024c717b4752bc57d50c4e0865b9")
+               .then(response => {
+                    console.log("response: ", response);
+               }
+               )
+               .catch(err => {
+                    console.log("error: ", err);
+               }
+
+               )
+
+     }, []
+     )
+
+     return (
+
+     
+     < div className = "page" >
           <h1 className="pagehead">This is news page</h1>
+
+
+
+
+
           <div className="main">
-               <NewsPost
+
+          {
+                posts.map((eachPost, i) => (
+                    <>
+                        <NewsPost
+                            name={eachPost.name}
+                            postText={eachPost.postText}
+                            profilePhoto={eachPost.profilePhoto}
+                            postImage="https://cdn.motor1.com/images/mgl/mrz1e/s3/coolest-cars-feature.jpg"
+                            postDate={eachPost.postDate}
+                        ></NewsPost>
+                    </>
+                ))
+            }
+
+               {/* <NewsPost
                     title="Holly Willoughby 'sneaks out of National Television Awards early' - Daily Mail"
                     description="The TV presenter, 41, was booed during the event when she and co-host Phillip Schofield's show This Morning was announced as one of the nominees for the Best Daytime award."
                     newsurl="https://www.dailymail.co.uk/tvshowbiz/article-11314105/Holly-Willoughby-sneaks-National-Television-Awards-early.html"
@@ -50,10 +109,11 @@ const NewsPage = () => (
                     title="Australia v England: third men’s T20 cricket international – live - The Guardian"
                     description="Over-by-over report: Will England complete a clean sweep in the final match of the series in Canberra? Join Tim de Lisle"
                     newsurl="https://www.theguardian.com/sport/live/2022/oct/14/australia-v-england-third-mens-t20-cricket-international-live"
-                    imageurl="https://i.guim.co.uk/img/media/25efb53b17483205f7ba1086f6ae36228f7527f2/0_2_8192_4915/master/8192.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctbGl2ZS5wbmc&enable=upscale&s=53d0313ea81bfbb80e4565280e1c77c6" />
+                    imageurl="https://i.guim.co.uk/img/media/25efb53b17483205f7ba1086f6ae36228f7527f2/0_2_8192_4915/master/8192.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctbGl2ZS5wbmc&enable=upscale&s=53d0313ea81bfbb80e4565280e1c77c6" /> */}
 
           </div>
-     </div>
-);
+     </div >
+     )
+};
 
 ReactDOM.render(<NewsPage />, document.querySelector("#root"));

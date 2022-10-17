@@ -2,6 +2,7 @@ html,
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: lightgray;
+    color: black;
 }
 
 .pagehead {
@@ -63,4 +64,15 @@ p {
     text-decoration: none;
     color: fuchsia;
     font-size: 1.1em;
+}
+
+.post .postFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
+}
+
+hr {
+    border: 1px solid black;
+    background:darkblue;
 }
