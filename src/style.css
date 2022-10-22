@@ -43,8 +43,8 @@ body {
 .main {
     display: flex;
     flex-direction: column;
-    height: 92Vh;
-    overflow-y: scroll;
+    height: 85vh;
+    overflow-y: auto;
 }
 
 .post {
@@ -94,7 +94,75 @@ hr {
     background: darkblue;
 }
 
+.search {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search>form {
+    width: 100%;
+}
+
+.search>button {
+    width: 11%;
+    height: 46px;
+    padding-right: 10px;
+    font-size: 1.3em;
+    border-radius: 10px;
+}
+
+#search {
+    width: 40%;
+    height: 40px;
+    font-size: 1.3em;
+    padding-left: 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.loading {
+    color: red;
+    font-size: 1.8em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+}
+
+.spinner {
+    animation: spin infinite 2s linear;
+
+    /*You can increase or decrease the timer (5s) to 
+     increase or decrease the speed of the spinner*/
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @media screen and (max-width:700px) {
+
+    .search>button {
+        width: 82.5%;
+    }
+
+    #search {
+        width: 80%;
+    }
+
+
     .post {
         margin-left: 5%;
         width: 90%;
