@@ -2,36 +2,33 @@ html,
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: lightgray;
-    color: black;
     overflow-y: hidden;
 }
 
-/* .head {
+ .head {
     display: flex;
     justify-content: flex-end;
   }
 
   .lit {
-    background-color: white;
+    background-color: lightgray;
     color: black;
-    border: 1px solid black;
   }
   
   .dark {
     background-color: black;
     color: white;
-    border: 1px solid white;
   }
   
   .button {
-    margin: 1%;
+    margin: 0.5%;
     margin-right: 3%;
-    height: 60px;
-    width: 60px;
+    height: 48px;
+    width: 48px;
     border-radius: 10px;
     box-shadow: 1px 1px 2px 1px mediumturquoise;
     cursor: pointer;
-  } */
+  } 
 
 .pagehead {
     margin: 0px;
@@ -43,7 +40,7 @@ body {
 .main {
     display: flex;
     flex-direction: column;
-    height: 85vh;
+    height: 78vh;
     overflow-y: auto;
 }
 
@@ -69,6 +66,16 @@ body {
     font-size: 1.3em;
 }
 
+.post .postFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
+}
+
+.postDark {
+    background-color: darkgray;
+    border: 1px solid white;
+}
 
 .post-pic {
     width: 100%;
@@ -81,12 +88,6 @@ body {
     color: fuchsia;
     font-size: 1.5em;
     font-weight: 600;
-}
-
-.post .postFooter {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around
 }
 
 hr {
@@ -110,6 +111,16 @@ hr {
     padding-right: 10px;
     font-size: 1.3em;
     border-radius: 10px;
+}
+
+.searchBtnLit {
+    background-color: darkgray;
+    color: white;
+}
+
+.searchBtnDark {
+    background-color: white;
+    color: black;
 }
 
 #search {
